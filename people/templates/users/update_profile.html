@@ -1,0 +1,23 @@
+<h2>Update Profile</h2>
+<form method="post">
+    {% csrf_token %}
+    
+    <label for="id_username">Username:</label>
+    <input type="text" name="username" id="id_username" value="{{ form.username.value|default:'' }}"><br>
+    
+    <label for="id_email">Email:</label>
+    <input type="email" name="email" id="id_email" value="{{ form.email.value|default:'' }}"><br>
+    
+    <label for="id_bio">Bio:</label>
+    <textarea name="bio" id="id_bio">{{ form.bio.value|default:'' }}</textarea><br>
+    
+    <label for="id_sex">Sex:</label>
+    <select name="sex" id="id_sex">
+        <option value="" {% if not form.sex.value %}selected{% endif %}>Select</option>
+        <option value="Male" {% if form.sex.value == "Male" %}selected{% endif %}>Male</option>
+        <option value="Female" {% if form.sex.value == "Female" %}selected{% endif %}>Female</option>
+        <option value="Other" {% if form.sex.value == "Other" %}selected{% endif %}>Other</option>
+    </select><br>
+    
+    <button type="submit">Update Profile</button>
+</form>
